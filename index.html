@@ -1,0 +1,122 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>正航資訊股份有限公司</title>
+    <style>
+        /* 添加按鈕的 CSS 样式 */
+        body
+        {
+            background-image: url('images/background.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .msg{
+            font-family: Microsoft JhengHei;
+
+            font-size: 2.7vw; /* 设置字体大小 1em=12 45px*/
+            position: absolute;
+            top: 23%; /* 将 <p> 元素垂直居中定位 */
+            left: 15.5%; /* 将 <p> 元素水平居中定位 */
+            font-weight:bold;
+        }
+        button {
+            height: 30px;
+            width: 50px;
+        }
+        .title
+        {
+            font-family: Microsoft JhengHei;
+            font-size: 2.7vw; /* 设置字体大小 */
+            position: absolute;
+            top: 13%; /* 将 <p> 元素垂直居中定位 */
+            left: 15.5%; /* 将 <p> 元素水平居中定位 */
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div class="main">
+        <button type="button" class="OnClick1">顯示</button>
+    </div>
+    <p class="title">親愛的客戶 您好</p>
+    <p class="msg">正航資訊已收到您的電子發票回訊，謝謝您的配合</p>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".OnClick1").on("click", function () {
+                $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+                function(json) {
+                    $(".msg").text(json.ip);
+                    // document.write("My public IP address is: ", json.ip);
+                }
+                );
+            });
+            // 當文件載入完成後，設置按鈕的點擊事件
+            $(".OnClick").on("click", function () {
+                // 获取URL中的查询字符串
+                var queryString = window.location.search;
+                //直接使用window.location.search將參數加到URL後面就好
+                // 移除查询字符串中的问号
+                // queryString = queryString.substring(1);
+                // 将查询字符串解析为对象
+                // var params = {};
+                // var paramArray = queryString.split('&');
+                // for (var i = 0; i < paramArray.length; i++) {
+                //     var param = paramArray[i].split('=');
+                //     var paramKey = decodeURIComponent(param[0]);
+                //     var paramValue = decodeURIComponent(param[1]);
+                //     params[paramKey] = paramValue;
+                // }
+                // console.log(queryString);
+                // console.log(paramArray);
+                //console.log(params);
+                let url = 'https://api.water.gov.taipei/prod/WaterQualityData';
+                // 将requestData对象转换为查询字符串
+                //let queryString = $.param(requestData);
+                $.ajax({
+                    type: "POST",//
+                    url: url,
+                    dataType: "json",//回傳類型
+                    success: function (data) {
+                        // 將載入的資料顯示在 dataContainer 元素中
+                        console.log(data)
+                        console.log(queryString)
+                        if(data.httpCode == '200')
+                        {
+                            let jsonString = JSON.stringify(data.httpMessage);
+                            jsonString = jsonString.replace(/"/g, '');
+                            $(".msg").text(jsonString);
+                        }
+                    },
+                    error: function (error) {
+                        // 如果 AJAX 請求失敗，顯示錯誤信息
+                        $(".msg").html("載入資料失敗：" + error.statusText);
+                    }
+                });
+            });
+            // let url = 'https://api.water.gov.taipei/prod/WaterQualityData';
+            // $.ajax({
+            //         type: "POST",
+            //         url: url,
+            //         dataType: "json",//回傳類型
+            //         success: function (data) {
+            //             // 將載入的資料顯示在 dataContainer 元素中
+            //             console.log(data)
+            //             if(data.httpCode == '200')
+            //             {
+            //                 let jsonString = JSON.stringify(data.httpMessage);
+            //                 jsonString = jsonString.replace(/"/g, '');
+            //                 $(".msg").text(jsonString);
+            //             }
+            //         },
+            //         error: function (error) {
+            //             // 如果 AJAX 請求失敗，顯示錯誤信息
+            //             $("#dataContainer").html("載入資料失敗：" + error.statusText);
+            //         }
+            // });
+        });
+    </script>
+</body>
+</html>

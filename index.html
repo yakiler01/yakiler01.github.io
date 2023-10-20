@@ -45,17 +45,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function () {
-            $(".OnClick1").on("click", function () {
-                $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
-                function(json) {
-                    $(".msg").text(json.ip);
-                    // document.write("My public IP address is: ", json.ip);
-                }
-                );
-            });
             // 當文件載入完成後，設置按鈕的點擊事件
-                        // 获取URL中的查询字符串
-            let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsN08iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
+            $(".OnClick").on("click", function () {
+            // 获取URL中的查询字符串
+            let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
 
             $.ajax({
                 type: "get",//

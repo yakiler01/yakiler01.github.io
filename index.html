@@ -38,7 +38,7 @@
     
     
     <div class="main">
-        <button type="button" class="OnClick1">顯示</button>
+        <button type="button" class="OnClick">顯示</button>
     </div>
     <p class="title">親愛的客戶 您好</p>
     <p class="msg">正航資訊已收到您的電子發票回訊，謝謝您的配合</p>
@@ -72,11 +72,11 @@
                 // console.log(queryString);
                 // console.log(paramArray);
                 //console.log(params);
-                let url = 'https://api.water.gov.taipei/prod/WaterQualityData';
+                let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
                 // 将requestData对象转换为查询字符串
                 //let queryString = $.param(requestData);
                 $.ajax({
-                    type: "POST",//
+                    type: "get",//
                     url: url,
                     dataType: "json",//回傳類型
                     success: function (data) {

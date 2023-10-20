@@ -54,68 +54,30 @@
                 );
             });
             // 當文件載入完成後，設置按鈕的點擊事件
-            $(".OnClick").on("click", function () {
-                // 获取URL中的查询字符串
-                var queryString = window.location.search;
-                //直接使用window.location.search將參數加到URL後面就好
-                // 移除查询字符串中的问号
-                // queryString = queryString.substring(1);
-                // 将查询字符串解析为对象
-                // var params = {};
-                // var paramArray = queryString.split('&');
-                // for (var i = 0; i < paramArray.length; i++) {
-                //     var param = paramArray[i].split('=');
-                //     var paramKey = decodeURIComponent(param[0]);
-                //     var paramValue = decodeURIComponent(param[1]);
-                //     params[paramKey] = paramValue;
-                // }
-                // console.log(queryString);
-                // console.log(paramArray);
-                //console.log(params);
-                let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
-                // 将requestData对象转换为查询字符串
-                //let queryString = $.param(requestData);
-                $.ajax({
-                    type: "get",//
-                    url: url,
-                    dataType: "json",//回傳類型
-                    success: function (data) {
-                        // 將載入的資料顯示在 dataContainer 元素中
-                        console.log(data)
-                        console.log(queryString)
-                        if(data.httpCode == '200')
-                        {
-                            let jsonString = JSON.stringify(data.httpMessage);
-                            jsonString = jsonString.replace(/"/g, '');
-                            $(".msg").text(jsonString);
-                        }
-                    },
-                    error: function (error) {
-                        // 如果 AJAX 請求失敗，顯示錯誤信息
-                        $(".msg").html("載入資料失敗：" + error.statusText);
+                        // 获取URL中的查询字符串
+            let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsN08iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
+
+            $.ajax({
+                type: "get",//
+                url: url,
+                dataType: "jsonp", // 使用JSONP
+                jsonp: "callback", // JSONP回調函數名稱
+                success: function (data) {
+                    // 將載入的資料顯示在 dataContainer 元素中
+                    console.log(data);
+                    console.log(queryString);
+                    if (data.httpCode == '200') {
+                        let jsonString = JSON.stringify(data.httpMessage);
+                        jsonString = jsonString.replace(/"/g, '');
+                        $(".msg").text(jsonString);
                     }
-                });
+                },
+                error: function (error) {
+                    // 如果 AJAX 請求失敗，顯示錯誤信息
+                    $(".msg").html("載入資料失敗：" + error.statusText);
+                }
             });
-            // let url = 'https://api.water.gov.taipei/prod/WaterQualityData';
-            // $.ajax({
-            //         type: "POST",
-            //         url: url,
-            //         dataType: "json",//回傳類型
-            //         success: function (data) {
-            //             // 將載入的資料顯示在 dataContainer 元素中
-            //             console.log(data)
-            //             if(data.httpCode == '200')
-            //             {
-            //                 let jsonString = JSON.stringify(data.httpMessage);
-            //                 jsonString = jsonString.replace(/"/g, '');
-            //                 $(".msg").text(jsonString);
-            //             }
-            //         },
-            //         error: function (error) {
-            //             // 如果 AJAX 請求失敗，顯示錯誤信息
-            //             $("#dataContainer").html("載入資料失敗：" + error.statusText);
-            //         }
-            // });
+        });
         });
     </script>
 </body>

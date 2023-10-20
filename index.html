@@ -64,6 +64,7 @@
                 },
                 error: function (error) {
                     // 如果 AJAX 請求失敗，顯示錯誤信息
+                    console.log(error);
                     $(".msg").html("載入資料失敗：" + error.statusText);
                 }
             });

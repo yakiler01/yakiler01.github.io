@@ -50,11 +50,11 @@
                 $.ajax({
                     type: "get",
                     url: url,
-                    dataType: "json", // 使用JSON格式
+                    dataType: "text", // 使用JSON格式
                     success: function (data) {
                         // 将加载的数据显示在 dataContainer 元素中
                         console.log(data);
-                        let jsonString = JSON.stringify(data.httpMessage);
+                        let jsonString = JSON.stringify(data);
                         jsonString = jsonString.replace(/"/g, '');
                         $(".msg").text(jsonString);
                     },

@@ -42,34 +42,30 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function () {
-            // 當文件載入完成後，設置按鈕的點擊事件
+    // 當文件載入完成後，設置按鈕的點擊事件
             $(".OnClick").on("click", function () {
-            // 获取URL中的查询字符串
-            let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
-
-            $(".OnClick").on("click", function () {
-            // 获取URL中的查询字符串
-            let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
-
-            $.ajax({
-                type: "get",
-                url: url,
-                dataType: "json", // 使用JSON格式
-                success: function (data) {
-                    // 将加载的数据显示在 dataContainer 元素中
-                    console.log(data);
-                    let jsonString = JSON.stringify(data.httpMessage);
-                    jsonString = jsonString.replace(/"/g, '');
-                    $(".msg").text(jsonString);
-                },
-                error: function (error) {
-                    // 如果 AJAX 请求失败，显示错误信息
-                    console.log(error);
-                    $(".msg").html("載入資料失敗：" + error.statusText);
-                }
+                // 获取URL中的查询字符串
+                let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
+        
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    dataType: "json", // 使用JSON格式
+                    success: function (data) {
+                        // 将加载的数据显示在 dataContainer 元素中
+                        console.log(data);
+                        let jsonString = JSON.stringify(data.httpMessage);
+                        jsonString = jsonString.replace(/"/g, '');
+                        $(".msg").text(jsonString);
+                    },
+                    error: function (error) {
+                        // 如果 AJAX 请求失败，显示错误信息
+                        console.log(error);
+                        $(".msg").html("載入資料失敗：" + error.statusText);
+                    }
+                });
             });
         });
-    });
     </script>
 </body>
 </html>

@@ -55,11 +55,9 @@
                 success: function (data) {
                     // 將載入的資料顯示在 dataContainer 元素中
                     console.log(data);
-                    if (data.httpCode == '200') {
-                        let jsonString = JSON.stringify(data.httpMessage);
-                        jsonString = jsonString.replace(/"/g, '');
-                        $(".msg").text(jsonString);
-                    }
+                    let jsonString = JSON.stringify(data.httpMessage);
+                    jsonString = jsonString.replace(/"/g, '');
+                    $(".msg").text(jsonString);
                 },
                 error: function (error) {
                     // 如果 AJAX 請求失敗，顯示錯誤信息

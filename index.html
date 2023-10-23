@@ -45,8 +45,8 @@
     // 當文件載入完成後，設置按鈕的點擊事件
             $(".OnClick").on("click", function () {
                 // 获取URL中的查询字符串
-                let url = 'https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0';
-        
+                let url = 'http://nbsdemo.chi.com.tw:8009/twWebAPI/LinkCall?progid=X_twAPIInterfaceParam&methodName=TestReCAll&sign=4B96B7279EF8BE1C409F962BA2F5537EDC6FA37E29B1E828D88418CFAC399D06&paramInfo=ae3df95cdc374eebeyJQYXJhbTEiOiJQYXJhbTEiLCJQYXJhbTIiOiJQYXJhbTIiLCJhcGlFeHAiOjE0NzIxNjMxNDN9';
+                //https://chinbs.chi.com.tw:760/twWebAPI/LinkCall?progid=arSellInvoice&methodName=RecUrl&sign=D3EF49F91F6DD40283D2A07356D582C17128E0A7996FC764702781EA56E5D14F&paramInfo=08e4c91df25a4dc1eyJCaWxsTm8iOiJGQzIwMjMxMDIwMDAxMyIsImFwaUV4cCI6MTQ3MTUwNjkxOH0
                 $.ajax({
                     type: "get",
                     url: url,
